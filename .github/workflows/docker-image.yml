@@ -5,6 +5,9 @@ on:
   release:
     types: [published]
 
+env:
+  TZ: Asia/Shanghai
+
 jobs:
   buildx:
     runs-on: ubuntu-latest

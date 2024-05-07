@@ -32,4 +32,6 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: shanyanwcx/abs-ximalaya:latest
+          tags: 
+            shanyanwcx/abs-ximalaya:${{ steps.date.outputs.today }}
+            shanyanwcx/abs-ximalaya:latest

@@ -13,3 +13,5 @@ docker pull shanyanwcx/abs-ximalaya:latest
 容器默认端口为`7814`，注意URL最后不能带`/`。
 
 ![屏幕截图 2024-05-07 234206](https://github.com/shanyan-wcx/Abs-Ximalaya/assets/58252651/46f7e2a0-979b-4efd-adf5-3c3efcad4ca1)
+
+![屏幕截图 2024-05-07 234503](https://github.com/shanyan-wcx/Abs-Ximalaya/assets/58252651/265cfb3e-459e-4a90-89a2-5134c31f2c39)

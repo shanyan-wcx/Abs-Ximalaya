@@ -52,6 +52,4 @@ jobs:
           # 打印 VERSION
           echo VERSION=$VERSION
 
-          docker tag $IMAGE_NAME ${IMAGE_ID}:latest
-
           docker push $IMAGE_ID:$VERSION

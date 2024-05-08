@@ -1,3 +1,5 @@
+![icon](https://github.com/shanyan-wcx/Abs-Ximalaya/assets/58252651/ab3fae9b-dfa7-43fd-9fd3-1d37bbfa1ac2)
+
 # Abs-Ximalaya
 
 Audiobookshelf的喜马拉雅元数据提供程序。

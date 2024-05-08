@@ -11,7 +11,7 @@ const swaggerDocument = YAML.load(yamlFile);
 const app = express();
 const port = 7814;
 
-// 使用 JSON 解析�?间件
+// 使用 JSON 解析中间件
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ encoding: 'utf-8' }));
 
@@ -37,7 +37,7 @@ app.get('/search', (req, res) => {
   var data = [];
   var ret = 200;
   var msg;
-  console.log(`开始搜�? - 标�?�：${query}；作者：${author}`);
+  console.log(`开始搜索 - 标题：${query}；作者：${author}`);
   if (query) {
     kw = query;
   } else if (author) {
@@ -81,11 +81,11 @@ app.get('/search', (req, res) => {
         genres: [element.category_title],
         tags: tags,
         series: undefined,
-        language: element.category_title === "外�??" ? "外�??" : "�?�?",
+        language: element.category_title === "外语" ? "外语" : "中文",
         duration: undefined
       };
     });
-    console.log(`搜索结果�?${books.length}�?`);
+    console.log(`搜索结果：${books.length}条`);
     console.log(books);
     res.status(200).json({ matches: books });
   } else {
@@ -93,7 +93,7 @@ app.get('/search', (req, res) => {
   }
 });
 
-// 错�??处理
+// 错误处理
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something broke!');

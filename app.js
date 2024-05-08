@@ -71,10 +71,11 @@ app.get('/search', (req, res) => {
         duration: undefined
       };
     });
-    console.log(`搜索结果：${books.length}条`);
+    console.log(`搜索结果：共 ${books.length} 条`);
     console.log(books);
     res.status(200).json({ matches: books });
   } else {
+    console.log("什么也没找到~");
     res.status(200).json({ matches: [] });
   }
 });

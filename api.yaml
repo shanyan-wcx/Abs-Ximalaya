@@ -1,12 +1,12 @@
 openapi: 3.0.0
 
 servers:
-  - url: https://example.com
+  - url: http://localhost:7814
     description: Local server
 
 info:
-  title: Custom Metadata Provider
-  version: 0.1.0
+  title: Ximalaya Metadata Provider
+  version: 1.0.2
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT

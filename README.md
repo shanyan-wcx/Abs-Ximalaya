@@ -4,6 +4,8 @@
 
 Audiobookshelf的喜马拉雅元数据提供程序。
 
+GitHub存储库：https://github.com/shanyan-wcx/Abs-Ximalaya
+
 ## 使用方法
 
 ```bash

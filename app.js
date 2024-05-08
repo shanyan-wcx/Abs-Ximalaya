@@ -18,15 +18,12 @@ app.use(express.json({ encoding: 'utf-8' }));
 // 设置 Swagger UI
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+// 设置icon
+app.use('/favicon.ico', express.static('assets/favicon.ico'));
+
+// 首页
 app.get('/', (req, res) => {
-  const ok = [
-    {
-      code: 200,
-      message: 'ok',
-      description: "Audiobookshelf's Ximalaya Metadata Provider"
-    }
-  ];
-  res.status(200).json(ok);
+  res.status(200).send("欢迎使用Abs-Ximalaya！<br>这是一个Audiobookshelf的喜马拉雅元数据提供程序。");
 });
 
 // 搜索书籍
@@ -95,7 +92,12 @@ app.get('/search', (req, res) => {
 // 错误处理
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send('Something broke!');
+  res.status(500).send('Error - 发生了一些错误！');
+});
+
+// 未定义路由处理
+app.use((req, res, next) => {
+  res.status(404).send("404 - 页面不存在。");
 });
 
 app.listen(port, '0.0.0.0', () => {

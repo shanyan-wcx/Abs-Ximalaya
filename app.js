@@ -1,12 +1,5 @@
 const express = require('express');
-const YAML = require('js-yaml');
-const fs = require('fs');
 const request = require('sync-request');
-const swaggerUi = require('swagger-ui-express');
-
-// 读取 YAML 文件
-const yamlFile = fs.readFileSync('./api.yaml', 'utf8');
-const swaggerDocument = YAML.load(yamlFile);
 
 const app = express();
 const port = 7814;
@@ -15,10 +8,7 @@ const port = 7814;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ encoding: 'utf-8' }));
 
-// 设置 Swagger UI
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
-// 设置icon
+// 设置ICON
 app.use('/favicon.ico', express.static('assets/favicon.ico'));
 
 // 首页

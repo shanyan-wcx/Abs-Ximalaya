@@ -53,10 +53,14 @@ app.get('/search', (req, res) => {
       const cover_path = ("http:" + element.cover_path).replace(/!op_type=3&columns=290&rows=290&magick=png/g, "");
       const date = new Date(element.created_at);
       const year = date.getFullYear();
+      var author_;
+      if ((element.intro && element.intro.includes(author)) || (element.custom_title && element.custom_title.includes(author)) || (element.title && element.title.includes(author))) {
+        author_ = author;
+      }
       books[i++] = {
         title: element.title,
         subtitle: element.custom_title,
-        author: undefined,
+        author: author_,
         narrator: element.nickname,
         publisher: "喜马拉雅",
         publishedYear: year,

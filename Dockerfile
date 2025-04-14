@@ -10,6 +10,7 @@ COPY . /app
 
 FROM alpine:latest
 ENV TZ=Asia/Shanghai
+ENV PORT=7814
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo '$TZ' > /etc/timezone
 RUN apk add --no-cache --update nodejs npm
 WORKDIR /app

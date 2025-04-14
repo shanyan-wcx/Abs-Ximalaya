@@ -2,7 +2,7 @@ const express = require('express');
 const request = require('sync-request');
 
 const app = express();
-const port = 7814;
+const port = process.env.PORT || 7814;
 
 // 使用 JSON 解析中间件
 app.use(express.urlencoded({ extended: true }));

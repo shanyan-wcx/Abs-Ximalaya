@@ -1,2 +1,18 @@
+# 依赖
 node_modules
+npm-debug.log
+
+# Git 相关文件无关紧要
 .git
+.gitignore
+
+# 编辑器/系统临时文件
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+
+# 本地构建产物或缓存
+dist
+build
+.cache

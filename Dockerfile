@@ -1,22 +1,18 @@
-FROM alpine:latest AS builder
-ENV TZ=Asia/Shanghai
-ENV PORT=7814
-ENV NODE_ENV=production
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo '$TZ' > /etc/timezone
-RUN apk add --no-cache --update nodejs npm
-WORKDIR /app
-COPY package.json /app/package.json
-RUN cd /app
-RUN npm install
-COPY . /app
-
 FROM alpine:latest
+
 ENV TZ=Asia/Shanghai
 ENV PORT=7814
 ENV NODE_ENV=production
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo '$TZ' > /etc/timezone
-RUN apk add --no-cache --update nodejs npm
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo "$TZ" > /etc/timezone && apk add --no-cache nodejs npm
+
 WORKDIR /app
-COPY --from=builder /app .
+
+COPY package.json ./
+RUN npm install --production
+
+COPY . .
+
 EXPOSE ${PORT}
-CMD npm start
+
+CMD ["node", "app.js"]

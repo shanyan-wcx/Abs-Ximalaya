@@ -1,8 +1,51 @@
 const express = require('express');
 const axios = require('axios');
+const cheerio = require('cheerio');
 
 const app = express();
 const port = process.env.PORT || 7814;
+
+// 移除购买须知及其后的所有内容
+function removePurchaseNotes(htmlContent) {
+    const $ = cheerio.load(htmlContent);
+
+    let found = false;
+    $('p').each(function() {
+        const $p = $(this);
+        if (!found && /购买须知/.test($p.text())) {
+            found = true;
+        }
+        if (found) {
+            $p.remove();
+        }
+    });
+
+    return $.html();
+}
+
+// 移除结尾多余的 <br> 标签
+function removeTrailingBr(html) {
+  const $ = cheerio.load(html);
+
+  // 删除 body 末尾所有连续的 <br> 标签（无论是否被包裹）
+  $('body').find('br').each((_, el) => {
+    // 如果这个 <br> 之后没有非空内容，就删掉
+    const next = $(el).nextAll().text().trim();
+    if (!next && $(el).parent().nextAll().text().trim() === '') {
+      $(el).remove();
+    }
+  });
+
+  // 清空仅包含 <br> 的标签（例如 <span><br><br></span>）
+  $('body').find('*').each((_, el) => {
+    const html = $(el).html()?.trim();
+    if (html && /^(\s*<br\s*\/?>\s*)+$/.test(html)) {
+      $(el).empty();
+    }
+  });
+
+  return $.html();
+}
 
 // 使用 JSON 解析中间件
 app.use(express.urlencoded({ extended: true }));
@@ -79,7 +122,8 @@ app.get('/search', async (req, res, next) => {
 
         const richIntroHtml = detailResponse.data?.data?.intro?.richIntro;
         if (richIntroHtml) {
-          richDescription = richIntroHtml;
+          richDescription = removePurchaseNotes(richIntroHtml);
+          richDescription = removeTrailingBr(richDescription);
           console.log(`成功获取 Album ID: ${element.id} 的详细介绍`);
         }
       } catch (error) {

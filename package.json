@@ -1,6 +1,6 @@
 {
   "name": "abs-ximalaya",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,7 +11,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^4.19.2",
-    "sync-request": "^6.1.0"
+    "axios": "^1.12.2",
+    "express": "^5.1.0"
   }
 }

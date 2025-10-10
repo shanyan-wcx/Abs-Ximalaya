@@ -15,4 +15,4 @@ COPY . .
 
 EXPOSE ${PORT}
 
-CMD ["node", "app.js"]
+CMD ["npm", "start"]

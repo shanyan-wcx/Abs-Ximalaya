@@ -79,8 +79,17 @@ app.get('/search', async (req, res, next) => {
       return res.status(200).json({ matches: [] });
     }
 
-    // 1. 发起初始搜索请求
-    const searchUrl = `https://www.ximalaya.com/revision/search?core=album&kw=${encodeURI(kw)}&page=1&spellchecker=true&rows=20&condition=relation&device=web`; // 减少行数以提高性能，例如20
+    // 1. 发起初始搜索请求（使用 URLSearchParams 安全构建查询串，固定域名不受用户输入影响）
+    const searchParams = new URLSearchParams({
+      core: 'album',
+      kw: String(kw),
+      page: '1',
+      spellchecker: 'true',
+      rows: '20',
+      condition: 'relation',
+      device: 'web'
+    });
+    const searchUrl = `https://www.ximalaya.com/revision/search?${searchParams.toString()}`;
     const searchResponse = await axios.get(searchUrl);
 
     if (searchResponse.data.ret !== 200) {

@@ -123,7 +123,7 @@ app.get('/search', async (req, res, next) => {
 
       // 3. 构建最终的书籍信息对象
       const tags = 'tags' in element ? element.tags.split(',') : [];
-      const cover_path = ("http:" + element.cover_path).replace(/!op_type=3&columns=290&rows=290&magick=png/g, "");
+      const cover_path = ("http:" + element.cover_path).replace(/columns=\d+&rows=\d+/g, "columns=1024&rows=1024");
       const date = new Date(element.created_at);
       const year = date.getFullYear();
       let author_ = author;
